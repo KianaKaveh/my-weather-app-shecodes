@@ -174,3 +174,12 @@ div.weather-forecast h1 {
   font-size: 70px;
   color: rgba(245, 209, 8, 0.932);
 }
+
+.open-source-code {
+  display: block;
+  float: right;
+  font-size: smaller;
+  position: relative;
+  right: 40px;
+  top: 130px;
+}
