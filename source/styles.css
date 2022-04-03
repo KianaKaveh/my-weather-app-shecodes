@@ -1,0 +1,176 @@
+h1 {
+  font-size: 120px;
+  position: relative;
+  top: -19px;
+}
+
+h2 {
+  font-size: 45px;
+  position: relative;
+  top: -25px;
+  font-weight: bold;
+}
+
+hr.line-top {
+  position: relative;
+  top: -55px;
+  width: 764px;
+  left: -32px;
+  border: 3px solid rgb(168, 165, 165);
+}
+
+div.card.weather-app {
+  margin: 20px auto;
+  display: block;
+  border-radius: 20px;
+  border: 1px solid rgb(168, 165, 165);
+  max-width: 59%;
+  padding: 15px;
+  width: 100%;
+  height: 800px;
+  font-family: "Happy Monkey", cursive;
+}
+
+div.city-information {
+  margin: 14px 14px 0;
+}
+
+div.temperature-information {
+  margin: 10px 0 0;
+}
+
+img.animated-sun {
+  max-width: 45%;
+  display: block;
+  margin: 0 auto;
+  position: relative;
+  right: -175px;
+  top: -246px;
+}
+
+div.extra-information {
+  position: relative;
+  top: -250px;
+  font-size: 14px;
+  width: 48%;
+}
+
+div.extra-information.border {
+  border: 1px solid rgb(168, 165, 165);
+  box-shadow: -3px -1px 2.5px rgba(0, 0, 0, 0.1);
+}
+
+div.humidity-wind-rain {
+  padding: 0 0 0 0;
+}
+
+div.weather-status {
+  position: relative;
+  bottom: 339px;
+  left: 386px;
+  text-transform: capitalize;
+  font-style: italic;
+}
+
+p button.btn {
+  display: block;
+  margin: 0 auto;
+  color: var(--bs-body-color);
+}
+
+div.weather-forecast {
+  position: relative;
+  top: -273px;
+}
+
+div.weather-forecast h1 {
+  font-size: 15px;
+  position: relative;
+  top: 0;
+}
+
+.form-control {
+  max-width: 400px;
+  border-radius: 24px;
+  margin: 0 0 -5px 0;
+}
+
+#search-icon {
+  position: relative;
+  left: 410px;
+  top: -36px;
+  font-size: x-large;
+  color: var(--bs-body-color);
+  padding: 4px 9px;
+}
+
+#location-icon {
+  position: relative;
+  left: 415px;
+  top: -82px;
+  font-size: x-large;
+  color: var(--bs-body-color);
+  padding: 4px 9px;
+  margin: 0 45px -19px 45px;
+}
+
+.temperature-switch {
+  position: relative;
+  top: -78px;
+  right: -625px;
+  font-size: smaller;
+  margin: -27px 0 0 0;
+}
+
+#celsius-temperature {
+  color: black;
+}
+
+#fahrenheit-temperature {
+  color: black;
+}
+
+.date-time {
+  position: relative;
+  top: -35px;
+  color: grey;
+  font-size: smaller;
+}
+
+.vertical {
+  border-left: 1px solid rgb(168, 165, 165);
+  position: relative;
+  height: 100px;
+  left: -38px;
+  padding: 8px 15px;
+  font-size: 18px;
+  top: 10px;
+}
+
+#max-temp {
+  color: red;
+  font-size: 18px;
+}
+
+#min-temp {
+  color: blue;
+  font-size: 18px;
+}
+
+#humidity {
+  color: rgb(0, 140, 255);
+}
+
+#wind {
+  color: rgb(130, 187, 233);
+}
+
+#chance-of-rain {
+  color: rgb(4, 43, 75);
+  font-size: 14px;
+}
+
+.weather-icon {
+  font-size: 70px;
+  color: rgba(245, 209, 8, 0.932);
+}
