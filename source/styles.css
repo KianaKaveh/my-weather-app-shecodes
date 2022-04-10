@@ -39,15 +39,6 @@ div.temperature-information {
   margin: 10px 0 0;
 }
 
-img.animated-sun {
-  max-width: 45%;
-  display: block;
-  margin: 0 auto;
-  position: relative;
-  right: -175px;
-  top: -246px;
-}
-
 div.extra-information {
   position: relative;
   top: -250px;
@@ -80,7 +71,7 @@ p button.btn {
 
 div.weather-forecast {
   position: relative;
-  top: -273px;
+  top: -250px;
 }
 
 div.weather-forecast h1 {
@@ -145,6 +136,16 @@ div.weather-forecast h1 {
   padding: 8px 15px;
   font-size: 18px;
   top: 10px;
+}
+
+#current-weather-icon {
+  max-width: 45%;
+  display: block;
+  margin: 0 auto;
+  position: relative;
+  right: -175px;
+  top: -246px;
+  border-radius: 10px;
 }
 
 #max-temp {
