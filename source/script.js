@@ -149,39 +149,47 @@ function changeWeatherIcon(iconChange) {
   return icon;
 }
 
+function showMiles() {
+  let windElement = document.querySelector("#wind-speed");
+  let windSpeed = Math.round((windSpeedConversion) / 1.609);
+  windElement.innerHTML = `${windSpeed} mph`;
+}
+
+function showKilometers () {
+  let windElement = document.querySelector("#wind-speed");
+  windElement.innerHTML = `${Math.round(windSpeedConversion)} km/h`;
+}
+
 function showFahrenheit() {
+  showMiles();
   let temperatureElement = document.querySelector("#temperature");
   let temperatureElementMax = document.querySelector("#max-temp");
   let temperatureElementMin = document.querySelector("#min-temp");
   let temperatureElementPerception = document.querySelector("#perception");
-  let windElement = document.querySelector("#wind-speed");
   celsiusButton.classList.remove("active");
   fahrenheitButton.classList.add("active");
   let fahrenheitTemperature = Math.round((celsiusTemperature * 9) / 5 + 32);
   let fahrenheitTemperatureMax = Math.round((celsiusTemperatureMax * 9) / 5 + 32);
   let fahrenheitTempeartureMin = Math.round((celsiusTemperatureMin * 9) / 5 + 32);
   let fahrenheitTempPerception = Math.round((celsiusTempPerception * 9) / 5 + 32);
-  let windSpeed = Math.round((windSpeedConversion) / 1.609);
   temperatureElement.innerHTML = `${fahrenheitTemperature}°`;
   temperatureElementMax.innerHTML = `${fahrenheitTemperatureMax}°`;
   temperatureElementMin.innerHTML = `${fahrenheitTempeartureMin}°`;
   temperatureElementPerception.innerHTML = `Feels like ${fahrenheitTempPerception}°`;
-  windElement.innerHTML = `${windSpeed} mph`;
 }
 
 function showCelsius() {
+  showKilometers();
   let temperatureElement = document.querySelector("#temperature");
   let temperatureElementMax = document.querySelector("#max-temp");
   let temperatureElementMin = document.querySelector("#min-temp");
   let temperatureElementPerception = document.querySelector("#perception");
-  let windElement = document.querySelector("#wind-speed");
   fahrenheitButton.classList.remove("active");
   celsiusButton.classList.add("active");
   temperatureElement.innerHTML = `${Math.round(celsiusTemperature)}°`;
   temperatureElementMax.innerHTML = `${Math.round(celsiusTemperatureMax)}°`;
   temperatureElementMin.innerHTML = `${Math.round(celsiusTemperatureMin)}°`;
   temperatureElementPerception.innerHTML = `Feels like ${Math.round(celsiusTempPerception)}°`;
-  windElement.innerHTML = `${Math.round(windSpeedConversion)} km/h`;
 }
 
 let currentDate = new Date();
