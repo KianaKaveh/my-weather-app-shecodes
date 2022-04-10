@@ -113,6 +113,10 @@ div.weather-forecast h1 {
   margin: -27px 0 0 0;
 }
 
+.temperature-switch .active {
+  cursor: default;
+}
+
 #celsius-temperature {
   color: black;
 }

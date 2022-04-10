@@ -33,8 +33,9 @@ function showCurrentDate(latestDate) {
 
 function showWeather(response) {
 //Refactored code:
+celsiusTemperature = response.data.main.temp;
 document.querySelector("h2").innerHTML = response.data.name;
-document.querySelector("#temperature").innerHTML = `${Math.round(response.data.main.temp)}°`;
+document.querySelector("#temperature").innerHTML = `${Math.round(celsiusTemperature)}°`;
 document.querySelector("#perception").innerHTML = `Feels like ${Math.round(response.data.main.feels_like)}°`;
 document.querySelector("#max-temp").innerHTML = `${Math.round(response.data.main.temp_max)}°`;
 document.querySelector("#min-temp").innerHTML = `${Math.round(response.data.main.temp_min)}°`;
@@ -72,6 +73,7 @@ document.querySelector("#current-weather-icon").setAttribute("src", changeWeathe
 //weatherIcon.setAttribute("alt", response.data.weather[0].description);
 //weatherIcon.setAttribute("src", changeWeatherIcon(response.data.weather[0].description));
 }
+
 function searchCity(city) {
   let units = "metric";
   let apiKey = "82a7c76c4a898d9f4cee978bafdd1b60";
@@ -143,6 +145,21 @@ function changeWeatherIcon(iconChange) {
   return icon;
 }
 
+function showFahrenheit() {
+  let temperatureElement = document.querySelector("#temperature");
+  celsiusButton.classList.remove("active");
+  fahrenheitButton.classList.add("active");
+  let fahrenheitTemperature = Math.round((celsiusTemperature * 9) / 5 + 32);
+  temperatureElement.innerHTML = `${fahrenheitTemperature}°`;
+}
+
+function showCelsius() {
+  let temperatureElement = document.querySelector("#temperature");
+  fahrenheitButton.classList.remove("active");
+  celsiusButton.classList.add("active");
+  temperatureElement.innerHTML = `${Math.round(celsiusTemperature)}°`;
+}
+
 let currentDate = new Date();
 showCurrentDate(currentDate);
 
@@ -151,5 +168,13 @@ enterCityForm.addEventListener("submit", showCity);
 
 let currentLocationButton = document.querySelector("#location-icon");
 currentLocationButton.addEventListener("click", getGeoLocation);
+
+let celsiusTemperature = null;
+
+let fahrenheitButton = document.querySelector("#fahrenheit-temperature");
+fahrenheitButton.addEventListener("click", showFahrenheit);
+
+let celsiusButton = document.querySelector("#celsius-temperature");
+celsiusButton.addEventListener("click", showCelsius);
 
 searchCity("Munich");
