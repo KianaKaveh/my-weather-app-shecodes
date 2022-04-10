@@ -34,13 +34,17 @@ function showCurrentDate(latestDate) {
 function showWeather(response) {
 //Refactored code:
 celsiusTemperature = response.data.main.temp;
+celsiusTemperatureMax = response.data.main.temp_max;
+celsiusTemperatureMin = response.data.main.temp_min;
+celsiusTempPerception = response.data.main.feels_like;
+windSpeedConversion = response.data.wind.speed;
 document.querySelector("h2").innerHTML = response.data.name;
 document.querySelector("#temperature").innerHTML = `${Math.round(celsiusTemperature)}°`;
-document.querySelector("#perception").innerHTML = `Feels like ${Math.round(response.data.main.feels_like)}°`;
-document.querySelector("#max-temp").innerHTML = `${Math.round(response.data.main.temp_max)}°`;
-document.querySelector("#min-temp").innerHTML = `${Math.round(response.data.main.temp_min)}°`;
+document.querySelector("#perception").innerHTML = `Feels like ${Math.round(celsiusTempPerception)}°`;
+document.querySelector("#max-temp").innerHTML = `${Math.round(celsiusTemperatureMax)}°`;
+document.querySelector("#min-temp").innerHTML = `${Math.round(celsiusTemperatureMin)}°`;
 document.querySelector("#humidity-value").innerHTML = response.data.main.humidity;
-document.querySelector("#wind-speed").innerHTML = Math.round(response.data.wind.speed);
+document.querySelector("#wind-speed").innerHTML = `${Math.round(windSpeedConversion)} km/h`;
 document.querySelector("#weather-description").innerHTML = response.data.weather[0].description;
 document.querySelector("#current-weather-icon").setAttribute("alt", response.data.weather[0].description);
 document.querySelector("#current-weather-icon").setAttribute("src", changeWeatherIcon(response.data.weather[0].description));
@@ -147,17 +151,37 @@ function changeWeatherIcon(iconChange) {
 
 function showFahrenheit() {
   let temperatureElement = document.querySelector("#temperature");
+  let temperatureElementMax = document.querySelector("#max-temp");
+  let temperatureElementMin = document.querySelector("#min-temp");
+  let temperatureElementPerception = document.querySelector("#perception");
+  let windElement = document.querySelector("#wind-speed");
   celsiusButton.classList.remove("active");
   fahrenheitButton.classList.add("active");
   let fahrenheitTemperature = Math.round((celsiusTemperature * 9) / 5 + 32);
+  let fahrenheitTemperatureMax = Math.round((celsiusTemperatureMax * 9) / 5 + 32);
+  let fahrenheitTempeartureMin = Math.round((celsiusTemperatureMin * 9) / 5 + 32);
+  let fahrenheitTempPerception = Math.round((celsiusTempPerception * 9) / 5 + 32);
+  let windSpeed = Math.round((windSpeedConversion) / 1.609);
   temperatureElement.innerHTML = `${fahrenheitTemperature}°`;
+  temperatureElementMax.innerHTML = `${fahrenheitTemperatureMax}°`;
+  temperatureElementMin.innerHTML = `${fahrenheitTempeartureMin}°`;
+  temperatureElementPerception.innerHTML = `Feels like ${fahrenheitTempPerception}°`;
+  windElement.innerHTML = `${windSpeed} mph`;
 }
 
 function showCelsius() {
   let temperatureElement = document.querySelector("#temperature");
+  let temperatureElementMax = document.querySelector("#max-temp");
+  let temperatureElementMin = document.querySelector("#min-temp");
+  let temperatureElementPerception = document.querySelector("#perception");
+  let windElement = document.querySelector("#wind-speed");
   fahrenheitButton.classList.remove("active");
   celsiusButton.classList.add("active");
   temperatureElement.innerHTML = `${Math.round(celsiusTemperature)}°`;
+  temperatureElementMax.innerHTML = `${Math.round(celsiusTemperatureMax)}°`;
+  temperatureElementMin.innerHTML = `${Math.round(celsiusTemperatureMin)}°`;
+  temperatureElementPerception.innerHTML = `Feels like ${Math.round(celsiusTempPerception)}°`;
+  windElement.innerHTML = `${Math.round(windSpeedConversion)} km/h`;
 }
 
 let currentDate = new Date();
@@ -170,6 +194,10 @@ let currentLocationButton = document.querySelector("#location-icon");
 currentLocationButton.addEventListener("click", getGeoLocation);
 
 let celsiusTemperature = null;
+let celsiusTemperatureMax = null;
+let celsiusTemperatureMin = null;
+let celsiusTempPerception = null;
+let windSpeedConversion = null;
 
 let fahrenheitButton = document.querySelector("#fahrenheit-temperature");
 fahrenheitButton.addEventListener("click", showFahrenheit);
