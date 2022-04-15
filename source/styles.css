@@ -74,7 +74,7 @@ div.weather-forecast {
   top: -250px;
 }
 
-div.weather-forecast h1 {
+div.weather-forecast-date {
   font-size: 15px;
   position: relative;
   top: 0;
