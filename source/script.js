@@ -192,6 +192,148 @@ function showCelsius() {
   temperatureElementPerception.innerHTML = `Feels like ${Math.round(celsiusTempPerception)}°`;
 }
 
+function showForecast() {
+  let forecastElement = document.querySelector("#forecast");
+  let forecastHTML = `<div class="row">`;
+  forecastHTML = forecastHTML + `
+                    <div class="col-sm">
+                <div style="min-height: 0px">
+                  <div
+                    class="collapse collapse-horizontal"
+                    id="weatherForecast"
+                  >
+                    <div class="card card-body text-center" style="width: 100%" id="forecast">
+                      <div class="weather-forecast-date">Mon</div>
+                      <i class="bi bi-cloud-sun weather-icon"></i>
+                      <div class="weather-forecast-temperature">
+                        <span class="weather-forecast-temperature-max"
+                          >15°/</span
+                        >
+                        <span class="weather-forecast-temperature-min"
+                          >10°</span
+                        >
+                      </div>
+                      <div>
+                        <br />
+                        <i class="bi bi-umbrella" id="chance-of-rain"></i>
+                        <span style="font-size: 14px">1</span><span>%</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>`;
+  forecastHTML = forecastHTML + `
+                    <div class="col-sm">
+                <div style="min-height: 0px">
+                  <div
+                    class="collapse collapse-horizontal"
+                    id="weatherForecast"
+                  >
+                    <div class="card card-body text-center" style="width: 100%" id="forecast">
+                      <div class="weather-forecast-date">Mon</div>
+                      <i class="bi bi-cloud-sun weather-icon"></i>
+                      <div class="weather-forecast-temperature">
+                        <span class="weather-forecast-temperature-max"
+                          >15°/</span
+                        >
+                        <span class="weather-forecast-temperature-min"
+                          >10°</span
+                        >
+                      </div>
+                      <div>
+                        <br />
+                        <i class="bi bi-umbrella" id="chance-of-rain"></i>
+                        <span style="font-size: 14px">1</span><span>%</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>`;
+              forecastHTML = forecastHTML + `
+                    <div class="col-sm">
+                <div style="min-height: 0px">
+                  <div
+                    class="collapse collapse-horizontal"
+                    id="weatherForecast"
+                  >
+                    <div class="card card-body text-center" style="width: 100%" id="forecast">
+                      <div class="weather-forecast-date">Mon</div>
+                      <i class="bi bi-cloud-sun weather-icon"></i>
+                      <div class="weather-forecast-temperature">
+                        <span class="weather-forecast-temperature-max"
+                          >15°/</span
+                        >
+                        <span class="weather-forecast-temperature-min"
+                          >10°</span
+                        >
+                      </div>
+                      <div>
+                        <br />
+                        <i class="bi bi-umbrella" id="chance-of-rain"></i>
+                        <span style="font-size: 14px">1</span><span>%</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>`;
+              forecastHTML = forecastHTML + `
+                    <div class="col-sm">
+                <div style="min-height: 0px">
+                  <div
+                    class="collapse collapse-horizontal"
+                    id="weatherForecast"
+                  >
+                    <div class="card card-body text-center" style="width: 100%" id="forecast">
+                      <div class="weather-forecast-date">Mon</div>
+                      <i class="bi bi-cloud-sun weather-icon"></i>
+                      <div class="weather-forecast-temperature">
+                        <span class="weather-forecast-temperature-max"
+                          >15°/</span
+                        >
+                        <span class="weather-forecast-temperature-min"
+                          >10°</span
+                        >
+                      </div>
+                      <div>
+                        <br />
+                        <i class="bi bi-umbrella" id="chance-of-rain"></i>
+                        <span style="font-size: 14px">1</span><span>%</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>`;
+              forecastHTML = forecastHTML + `
+                    <div class="col-sm">
+                <div style="min-height: 0px">
+                  <div
+                    class="collapse collapse-horizontal"
+                    id="weatherForecast"
+                  >
+                    <div class="card card-body text-center" style="width: 100%" id="forecast">
+                      <div class="weather-forecast-date">Mon</div>
+                      <i class="bi bi-cloud-sun weather-icon"></i>
+                      <div class="weather-forecast-temperature">
+                        <span class="weather-forecast-temperature-max"
+                          >15°/</span
+                        >
+                        <span class="weather-forecast-temperature-min"
+                          >10°</span
+                        >
+                      </div>
+                      <div>
+                        <br />
+                        <i class="bi bi-umbrella" id="chance-of-rain"></i>
+                        <span style="font-size: 14px">1</span><span>%</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>`;
+  forecastHTML = forecastHTML + `</div>`;                    
+  forecastElement.innerHTML = forecastHTML;
+}
+
 let currentDate = new Date();
 showCurrentDate(currentDate);
 
@@ -214,3 +356,4 @@ let celsiusButton = document.querySelector("#celsius-temperature");
 celsiusButton.addEventListener("click", showCelsius);
 
 searchCity("Munich");
+showForecast();
