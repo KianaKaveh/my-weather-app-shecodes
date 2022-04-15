@@ -76,6 +76,7 @@ div.weather-forecast {
 
 div.weather-forecast-date {
   font-size: 15px;
+  font-weight: bolder;
   position: relative;
   top: 0;
 }
@@ -183,6 +184,10 @@ div.weather-forecast-date {
 #forecast {
   font-style: italic;
   color: rgb(4, 43, 75);
+}
+
+.weather-forecast-box {
+  background:rgb(250, 245, 245);
 }
 
 .open-source-code {

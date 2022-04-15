@@ -52,7 +52,7 @@ function showForecast(response) {
                     class="collapse collapse-horizontal"
                     id="weatherForecast"
                   >
-                    <div class="card card-body text-center" style="width: 100%" id="forecast">
+                    <div class="card card-body text-center weather-forecast-box" style="width: 100%" id="forecast">
                       <div class="weather-forecast-date">${formatDay(forecastDay.dt)}</div>
                       <div class="weather-icon">
                       ${forecastWeatherIcon(forecastDay.weather[0].description)}
