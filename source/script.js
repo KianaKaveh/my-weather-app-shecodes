@@ -31,38 +31,51 @@ function showCurrentDate(latestDate) {
   return dateToday;
 }
 
+function formatDay(timestamp) {
+  let date = new Date(timestamp * 1000);
+  let day = date.getDay();
+  let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+
+return days[day];
+}
+
 function showForecast(response) {
+  let forecast = response.data.daily;
   let forecastElement = document.querySelector("#forecast");
   let forecastHTML = `<div class="row">`;
-  let days = ["Mon", "Tue", "Wed", "Thu", "Fri"];
-  days.forEach(function(day) {
+  forecast.forEach(function(forecastDay, index) {
+    if (index > 0 && index < 7) {
   forecastHTML = forecastHTML + `
-                    <div class="col-sm">
+                    <div class="col-2">
                 <div style="min-height: 0px">
                   <div
                     class="collapse collapse-horizontal"
                     id="weatherForecast"
                   >
                     <div class="card card-body text-center" style="width: 100%" id="forecast">
-                      <div class="weather-forecast-date">${day}</div>
-                      <i class="bi bi-cloud-sun weather-icon"></i>
+                      <div class="weather-forecast-date">${formatDay(forecastDay.dt)}</div>
+                      <div class="weather-icon">
+                      ${forecastWeatherIcon(forecastDay.weather[0].description)}
+                      </div>
                       <div class="weather-forecast-temperature">
                         <span class="weather-forecast-temperature-max"
-                          >15°/</span
+                          >${Math.round(forecastDay.temp.max)}°/</span
                         >
                         <span class="weather-forecast-temperature-min"
-                          >10°</span
+                          >${Math.round(forecastDay.temp.min)}°</span
                         >
                       </div>
                       <div>
                         <br />
-                        <i class="bi bi-umbrella" id="chance-of-rain"></i>
-                        <span style="font-size: 14px">1</span><span>%</span>
+                        <i class="bi bi-umbrella"></i>
+                        <span style="font-size: 14px">${(forecastDay.pop) * 100}%</span>
                       </div>
                     </div>
                   </div>
                 </div>
               </div>`;
+    };
+    document.querySelector("#rain-probability").innerHTML = ((forecastDay.pop) * 100);
   });
   forecastHTML = forecastHTML + `</div>`;                    
   forecastElement.innerHTML = forecastHTML;
@@ -159,10 +172,10 @@ function changeWeatherIcon(iconChange) {
   let icon = "";
   if (iconChange === "clear sky") {
     icon = "images/sun.gif";
-  } else if (iconChange === "few clouds" || iconChange === "scattered clouds") {
+  } else if (iconChange === "few clouds" || iconChange === "scattered clouds" || iconChange === "broken clouds") {
     icon = "images/few clouds.gif";
-  } else if (iconChange === "broken clouds" || iconChange === "overcast clouds") {
-  icon = "images/broken clouds.gif";
+  } else if (iconChange === "overcast clouds") {
+  icon = "images/overcast clouds.gif";
   } else if (iconChange === "rain" || iconChange === "moderate rain") {
     icon = "images/rain.gif";
   } else if (iconChange === "heavy rain" || iconChange === "heavy intensity rain" || iconChange === "very heavy rain" || iconChange === "extreme rain" || iconChange === "heavy intensity shower rain") {
@@ -188,9 +201,49 @@ function changeWeatherIcon(iconChange) {
   } else if (iconChange === "drizzle" || iconChange === "drizzle rain" || iconChange === "light intensity drizzle") {
     icon = "images/drizzle.gif";
   } else if (iconChange === "heavy intensity drizzle" || iconChange === "light intensity drizzle rain" || iconChange === "heavy intensity drizzle rain" || iconChange === "shower rain and drizzle" || iconChange === "heavy shower rain and drizzle" || iconChange === "shower drizzle") {
-    icon = "images/more drizzle.gif"
+    icon = "images/more drizzle.gif";
   } else if (iconChange === "mist" || iconChange === "fog") {
     icon = "images/foggy.gif";
+  }
+  return icon;
+}
+
+function forecastWeatherIcon(forecastIcon) {
+  let icon = "";
+  if (forecastIcon === "clear sky") {
+    icon = `<i class="bi bi-sun"></i>`;
+  } else if (forecastIcon === "few clouds" || forecastIcon === "scattered clouds" || forecastIcon === "broken clouds") {
+    icon = `<i class="bi bi-cloud-sun"></i>`;
+  } else if (forecastIcon === "overcast clouds") {
+    icon = `<i class="bi bi-clouds"></i>`;
+  } else if (forecastIcon === "rain" || forecastIcon === "moderate rain") {
+    icon = `<i class="bi bi-cloud-rain"></i>`;
+  } else if (forecastIcon === "heavy rain" || forecastIcon === "heavy intensity rain" || forecastIcon === "very heavy rain" || forecastIcon === "extreme rain" || forecastIcon === "heavy intensity shower rain") {
+    icon = `<i class="bi bi-cloud-rain-heavy"></i>`;
+  } else if (forecastIcon === "light rain" || forecastIcon === "light intensity shower rain") {
+    icon = `<i class="bi bi-cloud-drizzle"></i>`;
+  } else if (forecastIcon === "freezing rain") {
+    icon = `<i class="bi bi-cloud-hail"></i>`;
+  } else if (forecastIcon === "shower rain" || forecastIcon === "ragged shower rain") {
+    icon = `<i class="bi bi-cloud-rain-heavy"></i>`;
+  } else if (forecastIcon === "thunderstorm" || forecastIcon === "light thunderstorm" || forecastIcon === "ragged thunderstorm" || forecastIcon === "thunderstorm with light rain") {
+    icon = `<i class="bi bi-cloud-lightning"></i>`;
+  } else if (forecastIcon === "thunderstorm with heavy rain" || forecastIcon === "heavy thunderstorm" || forecastIcon === "thunderstorm with rain") {
+    icon = `<i class="bi bi-cloud-lightning-rain"></i>`;
+  } else if (forecastIcon === "thunderstorm with light drizzle" || forecastIcon === "thunderstorm with drizzle" || forecastIcon === "thunderstorm with heavy drizzle") {
+    icon = `<i class="bi bi-cloud-lightning-rain"></i>`;
+  } else if (forecastIcon === "snow" || forecastIcon === "light snow" || forecastIcon === "light rain and snow" || forecastIcon === "rain and snow") {
+    icon = `<i class="bi bi-cloud-snow"></i>`;
+  } else if (forecastIcon === "shower snow" || forecastIcon === "ight shower sleet" || forecastIcon === "light shower snow") {
+    icon = `<i class="bi bi-cloud-snow"></i>`;
+  } else if (forecastIcon === "heavy snow" || forecastIcon === "sleet" || forecastIcon === "shower sleet" || forecastIcon === "heavy shower snow") {
+    icon = `<i class="bi bi-cloud-sleet"></i>`;
+  } else if (forecastIcon === "drizzle" || forecastIcon === "drizzle rain" || forecastIcon === "light intensity drizzle") {
+    icon = `<i class="bi bi-cloud-drizzle"></i>`;
+  } else if (forecastIcon === "heavy intensity drizzle" || forecastIcon === "light intensity drizzle rain" || forecastIcon === "heavy intensity drizzle rain" || forecastIcon === "shower rain and drizzle" || forecastIcon === "heavy shower rain and drizzle" || forecastIcon === "shower drizzle") {
+    icon = `<i class="bi bi-cloud-drizzle"></i>`;
+  } else if (forecastIcon === "mist" || forecastIcon === "fog") {
+    icon = `<i class="bi bi-cloud-fog"></i>`;
   }
   return icon;
 }
@@ -238,6 +291,10 @@ function showCelsius() {
   temperatureElementPerception.innerHTML = `Feels like ${Math.round(celsiusTempPerception)}°`;
 }
 
+function forecastBtn() {
+  buttonForecast.classList.add("active");
+}
+
 let currentDate = new Date();
 showCurrentDate(currentDate);
 
@@ -258,5 +315,8 @@ fahrenheitButton.addEventListener("click", showFahrenheit);
 
 let celsiusButton = document.querySelector("#celsius-temperature");
 celsiusButton.addEventListener("click", showCelsius);
+
+let buttonForecast = document.querySelector("#forecastButton");
+buttonForecast.addEventListener("click", forecastBtn);
 
 searchCity("Munich");

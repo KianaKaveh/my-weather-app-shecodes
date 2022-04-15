@@ -177,7 +177,12 @@ div.weather-forecast-date {
 
 .weather-icon {
   font-size: 70px;
-  color: rgba(245, 209, 8, 0.932);
+  opacity: 0.5;
+}
+
+#forecast {
+  font-style: italic;
+  color: rgb(4, 43, 75);
 }
 
 .open-source-code {
@@ -186,5 +191,5 @@ div.weather-forecast-date {
   font-size: smaller;
   position: relative;
   right: 40px;
-  top: 130px;
+  top: 167px;
 }
