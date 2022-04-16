@@ -57,7 +57,7 @@ function showForecast(response) {
                       <div class="weather-icon">
                       ${forecastWeatherIcon(forecastDay.weather[0].description)}
                       </div>
-                      <div class="weather-forecast-temperature">
+                      <div class="weather-forecast-temperature" style="font-size: 14px">
                         <span class="weather-forecast-temperature-max"
                           >${Math.round(forecastDay.temp.max)}°/</span
                         >
@@ -68,14 +68,14 @@ function showForecast(response) {
                       <div>
                         <br />
                         <i class="bi bi-umbrella"></i>
-                        <span style="font-size: 14px">${(forecastDay.pop) * 100}%</span>
+                        <span style="font-size: 14px">${Math.round(forecastDay.pop * 100)}%</span>
                       </div>
                     </div>
                   </div>
                 </div>
               </div>`;
     };
-    document.querySelector("#rain-probability").innerHTML = ((forecastDay.pop) * 100);
+    document.querySelector("#rain-probability").innerHTML = Math.round(forecastDay.pop * 100);
   });
   forecastHTML = forecastHTML + `</div>`;                    
   forecastElement.innerHTML = forecastHTML;
@@ -202,7 +202,7 @@ function changeWeatherIcon(iconChange) {
     icon = "images/drizzle.gif";
   } else if (iconChange === "heavy intensity drizzle" || iconChange === "light intensity drizzle rain" || iconChange === "heavy intensity drizzle rain" || iconChange === "shower rain and drizzle" || iconChange === "heavy shower rain and drizzle" || iconChange === "shower drizzle") {
     icon = "images/more drizzle.gif";
-  } else if (iconChange === "mist" || iconChange === "fog") {
+  } else if (iconChange === "mist" || iconChange === "fog" || iconChange === "haze") {
     icon = "images/foggy.gif";
   }
   return icon;
@@ -242,7 +242,7 @@ function forecastWeatherIcon(forecastIcon) {
     icon = `<i class="bi bi-cloud-drizzle"></i>`;
   } else if (forecastIcon === "heavy intensity drizzle" || forecastIcon === "light intensity drizzle rain" || forecastIcon === "heavy intensity drizzle rain" || forecastIcon === "shower rain and drizzle" || forecastIcon === "heavy shower rain and drizzle" || forecastIcon === "shower drizzle") {
     icon = `<i class="bi bi-cloud-drizzle"></i>`;
-  } else if (forecastIcon === "mist" || forecastIcon === "fog") {
+  } else if (forecastIcon === "mist" || forecastIcon === "fog" || forecastIcon === "haze") {
     icon = `<i class="bi bi-cloud-fog"></i>`;
   }
   return icon;
@@ -292,7 +292,11 @@ function showCelsius() {
 }
 
 function forecastBtn() {
-  buttonForecast.classList.add("active");
+  if (buttonForecast.classList.contains("active")) {
+    buttonForecast.classList.remove("active");
+  } else {
+    buttonForecast.classList.add("active");
+  }
 }
 
 let currentDate = new Date();
