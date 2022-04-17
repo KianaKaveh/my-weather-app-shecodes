@@ -187,7 +187,7 @@ div.weather-forecast-date {
 }
 
 .weather-forecast-box {
-  background:rgb(250, 245, 245);
+  background: radial-gradient(905px at 4.9% 85.8%, rgb(255, 243, 242) 0.1%, rgb(249, 248, 244) 57.6%);
 }
 
 .open-source-code {
